@@ -1,12 +1,14 @@
 import React from 'react';
 import { HeaderLogo } from 'components/HeaderLogo';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from 'routes';
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <HeaderLogo />
-      <h1>Hello World</h1>
-    </div>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
 
