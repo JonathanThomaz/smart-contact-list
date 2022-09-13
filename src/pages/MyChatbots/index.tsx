@@ -36,6 +36,14 @@ const MyChatbots = () => {
     handleFetch();
   }, [orderBy]);
 
+  const handleFavorite = (name: string) => {
+    if (favoriteList.includes(name)) {
+      setFavoriteList(prev => prev.filter(item => item !== name));
+    } else {
+      setFavoriteList(prev => [...prev, name]);
+    }
+  };
+
   return (
     <Container>
       <PageHeader>
@@ -80,6 +88,7 @@ const MyChatbots = () => {
               ?.filter(item => favoriteList.includes(item.name))
               .map(item => (
                 <ChatBotCard
+                  handleFavoriteClique={handleFavorite}
                   key={item.name}
                   isFavorite={true}
                   data={item}
@@ -96,6 +105,7 @@ const MyChatbots = () => {
           ?.filter(item => !favoriteList.includes(item.name))
           .map(item => (
             <ChatBotCard
+              handleFavoriteClique={handleFavorite}
               key={item.name}
               data={item}
               type={organizeType}

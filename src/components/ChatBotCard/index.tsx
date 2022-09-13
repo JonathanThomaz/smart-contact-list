@@ -20,13 +20,15 @@ interface IChatBotCard {
   data: IChatBot;
   isFavorite?: boolean;
   randomColor: string;
+  handleFavoriteClique: (name: string) => void;
 }
 
 export const ChatBotCard = ({
   type,
   data,
   isFavorite = false,
-  randomColor
+  randomColor,
+  handleFavoriteClique
 }: IChatBotCard) => {
   const navigate = useNavigate();
   return (
@@ -63,6 +65,7 @@ export const ChatBotCard = ({
               LocalStorageData.SCL_FAVORITE_LIST,
               JSON.stringify([...newList])
             );
+            handleFavoriteClique(data.name);
           }}
         >
           <StarIcon isFavorite={isFavorite} />
