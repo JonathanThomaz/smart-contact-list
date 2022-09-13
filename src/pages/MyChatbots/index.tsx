@@ -20,17 +20,19 @@ import { getRandomColor } from 'utils';
 const MyChatbots = () => {
   const [organizeType, setOrganizeType] = useState<'list' | 'block'>('block');
   const [chatBots, setChatBots] = useState<IChatBot[] | null>(null);
+  const [favoriteList, setFavoriteList] = useState<string[]>([]);
   const [filteredChatBots, setFilteredChatBots] = useState<IChatBot[] | null>(
     chatBots
   );
   const [orderBy, setOrderBy] = useState<'name' | 'creation'>('name');
-  const favoriteList = localStorage.getItem(LocalStorageData.SCL_FAVORITE_LIST);
   useEffect(() => {
     const handleFetch = async () => {
       const response = await instance.get(`bots?Filters[orderBy]=${orderBy}`);
       setChatBots(response.data);
       setFilteredChatBots(response.data);
     };
+    const localList = localStorage.getItem(LocalStorageData.SCL_FAVORITE_LIST);
+    if (localList) setFavoriteList(JSON.parse(localList));
     handleFetch();
   }, [orderBy]);
 
@@ -75,9 +77,7 @@ const MyChatbots = () => {
           <Subtitle>Favorites</Subtitle>
           <GridCards type={organizeType}>
             {filteredChatBots
-              ?.filter(item =>
-                [...JSON.parse(favoriteList)].includes(item.name)
-              )
+              ?.filter(item => favoriteList.includes(item.name))
               .map(item => (
                 <ChatBotCard
                   key={item.name}
@@ -93,12 +93,7 @@ const MyChatbots = () => {
       <Divider />
       <GridCards type={organizeType}>
         {filteredChatBots
-          ?.filter(
-            item =>
-              ![...(favoriteList && JSON.parse(favoriteList))].includes(
-                item.name
-              )
-          )
+          ?.filter(item => !favoriteList.includes(item.name))
           .map(item => (
             <ChatBotCard
               key={item.name}
