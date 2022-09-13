@@ -10,7 +10,9 @@ export const theme: DefaultTheme = {
       city: '#56616E',
       onix: '#1A2437',
       mediumElephant: '#6E7B91',
-      mediumWave: '#D2DFE6'
+      mediumWave: '#D2DFE6',
+      wave: '#D2DFE6',
+      desk: '#607B99'
     },
     body: '#E5E5E5',
     white: '#FFFFFF',

@@ -10,3 +10,4 @@ export interface IType {
 export interface IRandomColor extends IType {
   color: string;
 }
+export * from './profile';

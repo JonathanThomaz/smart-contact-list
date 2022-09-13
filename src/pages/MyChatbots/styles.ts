@@ -16,6 +16,13 @@ export const Title = styled.span`
   font-weight: 800;
   color: ${({ theme }) => theme.colors.neutral.city};
 `;
+export const Subtitle = styled.div`
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  color: ${({ theme }) => theme.colors.neutral.desk};
+  margin-bottom: 16px;
+`;
 
 export const ActionsContainer = styled.div`
   display: flex;

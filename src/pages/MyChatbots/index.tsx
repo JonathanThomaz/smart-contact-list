@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'components/Container';
-import { ActionsContainer, GridCards, PageHeader, Title } from './styles';
+import {
+  ActionsContainer,
+  GridCards,
+  PageHeader,
+  Subtitle,
+  Title
+} from './styles';
 import { Button } from 'components/Button';
 import { BlocksIcon, ListIcon } from 'assets/icons';
 import { Input } from 'components/Input';
@@ -9,6 +15,7 @@ import { IChatBot } from 'interfaces';
 import { ChatBotCard } from 'components/ChatBotCard';
 import { Divider } from 'components/Divider';
 import { LocalStorageData } from 'types';
+import { getRandomColor } from 'utils';
 
 const MyChatbots = () => {
   const [organizeType, setOrganizeType] = useState<'list' | 'block'>('block');
@@ -65,7 +72,7 @@ const MyChatbots = () => {
       </PageHeader>
       {favoriteList && (
         <>
-          <Title>Favorites</Title>
+          <Subtitle>Favorites</Subtitle>
           <GridCards type={organizeType}>
             {filteredChatBots
               ?.filter(item =>
@@ -77,9 +84,7 @@ const MyChatbots = () => {
                   isFavorite={true}
                   data={item}
                   type={organizeType}
-                  randomColor={`#${Math.floor(
-                    Math.random() * 16777215
-                  ).toString(16)}`}
+                  randomColor={getRandomColor()}
                 />
               ))}
           </GridCards>
@@ -99,9 +104,7 @@ const MyChatbots = () => {
               key={item.name}
               data={item}
               type={organizeType}
-              randomColor={`#${Math.floor(Math.random() * 16777215).toString(
-                16
-              )}`}
+              randomColor={getRandomColor()}
             />
           ))}
       </GridCards>

@@ -9,6 +9,8 @@ interface IColors {
     onix: string;
     mediumElephant: string;
     mediumWave: string;
+    wave: string;
+    desk: string;
   };
   body: string;
   white: string;

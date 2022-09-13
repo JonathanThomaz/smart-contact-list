@@ -1,14 +1,22 @@
 import { IRandomColor, IType } from 'interfaces';
+import { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
-export const Card = styled.div<IType>`
+interface TButtonCard extends ButtonHTMLAttributes<HTMLButtonElement> {
+  cardType: 'list' | 'block';
+}
+
+export const Card = styled.div<TButtonCard>`
+  cursor: pointer;
+  outline: none;
+  border: none;
   position: relative;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
   border-radius: 7px;
   display: flex;
-  ${({ type }) => {
-    if (type === 'list') {
+  ${({ cardType }) => {
+    if (cardType === 'list') {
       return css`
         width: 100%;
         height: 60px;
